@@ -76,7 +76,7 @@ async function convert(clickedFile: any, selectedFiles: any, progress?: any) {
  * @param fsPath
  */
 function detectEncoding(fsPath: string) {
-  const sampleSize = 512;
+  const sampleSize = 5120;
   const sample = Buffer.alloc(sampleSize);
   const fd = fs.openSync(fsPath, "r");
 
@@ -129,13 +129,13 @@ async function replaceContent(uri: Uri, force: boolean = false, progress?: any) 
     change: false,
   };
 
-  if (defaultConfig.neededConvertCharset.indexOf(encoding) === -1) {
-    if (force && defaultConfig.isBatch) {
-      const message = `It seems that the file encoding(${encoding}) is not GBK related.`;
-      window.showWarningMessage(message);
-    }
-    return notChangedReturn;
-  }
+  // if (defaultConfig.neededConvertCharset.indexOf(encoding) === -1) {
+  //   if (force && defaultConfig.isBatch) {
+  //     const message = `It seems that the file encoding(${encoding}) is not GBK related.`;
+  //     window.showWarningMessage(message);
+  //   }
+  //   return notChangedReturn;
+  // }
 
   let dirIsIgnored = false;
 
